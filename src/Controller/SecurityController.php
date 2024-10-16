@@ -15,6 +15,10 @@ class SecurityController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
