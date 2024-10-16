@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\CardRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CardRepository::class)]
 #[HasLifecycleCallbacks]
+#[Vich\Uploadable]
 class Card
 {
     #[ORM\Id]
@@ -17,9 +20,9 @@ class Card
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
-    
-        #[ORM\Column]
-        private ?int $power = null;
+
+    #[ORM\Column]
+    private ?int $power = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -38,6 +41,16 @@ class Card
     #[ORM\ManyToOne(inversedBy: 'cards')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ClassCard $class = null;
+
+    #[Vich\UploadableField(mapping: 'cards', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $imageUpdatedAt = null;
+
 
     #[ORM\PrePersist]
     public function setCreatedAtValue(): void
@@ -138,5 +151,33 @@ class Card
         $this->class = $class;
 
         return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->imageUpdatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+    public function getImageUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->imageUpdatedAt;
     }
 }

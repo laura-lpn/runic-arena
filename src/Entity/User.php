@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->cards = new ArrayCollection();
     }
-    
+
     #[ORM\PrePersist]
     public function setRegisteredAtValue(): void
     {

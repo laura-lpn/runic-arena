@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CardType extends AbstractType
 {
@@ -17,6 +18,11 @@ class CardType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('imageFile', VichImageType::class, [
+                'required' => true,
+                'download_uri' => false,
+                'image_uri' => true,
+            ])
             ->add('power', ChoiceType::class, [
                 'choices' => [
                     '1' => 1,
