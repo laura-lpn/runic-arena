@@ -3,14 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
+#[HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -35,6 +39,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $username = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $registeredAt = null;
+
+    /**
+     * @var Collection<int, Card>
+     */
+    #[ORM\OneToMany(targetEntity: Card::class, mappedBy: 'user')]
+    private Collection $cards;
+
+    public function __construct()
+    {
+        $this->cards = new ArrayCollection();
+    }
+    
+    #[ORM\PrePersist]
+    public function setRegisteredAtValue(): void
+    {
+        $this->registeredAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +143,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getRegisteredAt(): ?\DateTimeImmutable
+    {
+        return $this->registeredAt;
+    }
+
+    public function setRegisteredAt(\DateTimeImmutable $registeredAt): static
+    {
+        $this->registeredAt = $registeredAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Card>
+     */
+    public function getCards(): Collection
+    {
+        return $this->cards;
+    }
+
+    public function addCard(Card $card): static
+    {
+        if (!$this->cards->contains($card)) {
+            $this->cards->add($card);
+            $card->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCard(Card $card): static
+    {
+        if ($this->cards->removeElement($card)) {
+            // set the owning side to null (unless already changed)
+            if ($card->getUser() === $this) {
+                $card->setUser(null);
+            }
+        }
 
         return $this;
     }

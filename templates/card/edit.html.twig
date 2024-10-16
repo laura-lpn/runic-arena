@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Éditer {{ card.name }}
+{% endblock %}
+
+{% block body %}
+	<h1>Éditer {{ card.name }}</h1>
+
+	{{ form_errors(form) }}
+
+	{{ form_start(form) }}
+	{{ form_row(form.name, {
+    label: "Nom de la carte"
+  }) }}
+	{{ form_row(form.class, {
+    label: "Classe"
+  }) }}
+	{{ form_row(form.type, {
+    label: "Type"
+  }) }}
+	{{ form_row(form.power, {
+      label: "Puisance d'attaque"
+  }) }}
+
+	<button type="submit" class="btn">Éditer</button>
+	{{ form_end(form) }}
+{% endblock %}
