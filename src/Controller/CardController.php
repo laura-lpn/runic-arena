@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Card;
 use App\Form\CardType;
 use App\Repository\CardRepository;
+use App\Service\GenerateName;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -104,5 +106,19 @@ class CardController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('app_cards');
+    }
+
+    private $generateName;
+
+    public function __construct(GenerateName $generateName)
+    {
+        $this->generateName = $generateName;
+    }
+
+    #[Route('/cards/generate-name', name: 'app_card_generate')]
+    public function generateName(): JsonResponse
+    {
+        $name = $this->generateName->generateName();
+        return new JsonResponse(['name' => $name]);
     }
 }

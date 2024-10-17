@@ -9,10 +9,14 @@
 	{{ form_errors(form) }}
 
 	{{ form_start(form) }}
-	{{ form_row(form.name, {
-    label: "Nom de la carte"
-  }) }}
-  {{ form_row(form.imageFile, {
+	<div>
+		{{ form_label(form.name) }}
+		{{ form_widget(form.name) }}
+
+		<button type="button" class="btn" id="random">Générer un nom aléatoire</button>
+	</div>
+
+	{{ form_row(form.imageFile, {
     label: "Image de la carte"
   }) }}
 	{{ form_row(form.class, {
@@ -27,4 +31,14 @@
 
 	<button type="submit" class="btn">Ajouter</button>
 	{{ form_end(form) }}
+
+
+	<script>
+		document.getElementById('random').addEventListener('click', function () {
+fetch('{{ path('app_card_generate') }}').then(response => response.json()).then(data => {
+document.getElementById('{{ form.name.vars.id }}').value = data.name;
+}).catch(error => console.error('Erreur:', error));
+});
+	</script>
+
 {% endblock %}
