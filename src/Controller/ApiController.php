@@ -18,7 +18,7 @@ class ApiController extends AbstractController
     ): JsonResponse {
         $cards = $cardRepository->findAll();
 
-        $context = [AbstractNormalizer::IGNORED_ATTRIBUTES => ['user', 'cards', 'imageFile', 'imageUpdatedAt']];
+        $context = [AbstractNormalizer::IGNORED_ATTRIBUTES => ['user', 'cards', 'imageFile', 'imageUpdatedAt', 'updatedAt', 'createdAt', 'class' => 'id', 'type' => 'id']];
 
         $cardsJson = $serializer->serialize($cards, 'json', $context);
 
