@@ -10,11 +10,13 @@
 			<link rel="stylesheet" href="{{ asset('styles/app.css') }}">
 		{% endblock %}
 
+
 		{% block javascripts %}
 			{% block importmap %}
 				{{ importmap('app') }}
 			{% endblock %}
 		{% endblock %}
+
 	</head>
 	<body>
 		<main class="flex flex-col w-4/5 mx-auto"> {% block body %}{% endblock %}

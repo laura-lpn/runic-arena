@@ -6,4 +6,14 @@
 {% block body %}
 	<h1>Dashboard</h1>
 
+	<h2>Nombre de cartes : {{ NbCards }}</h2>
+
+	<div>
+		{{ render_chart(chartType) }}
+	</div>
+
+	<div>
+		{{ render_chart(chartClass) }}
+	</div>
+
 {% endblock %}

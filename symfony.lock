@@ -248,6 +248,9 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/ux-chartjs": {
+        "version": "v2.20.0"
+    },
     "symfony/ux-turbo": {
         "version": "v2.20.0"
     },
@@ -287,6 +290,9 @@
         "files": [
             "./config/packages/messenger.yaml"
         ]
+    },
+    "symfonycasts/tailwind-bundle": {
+        "version": "v0.6.0"
     },
     "twig/extra-bundle": {
         "version": "v3.13.0"
