@@ -24,6 +24,13 @@ class ApiController extends AbstractController
 
         $cardsArray = json_decode($cardsJson, true);
 
+        // Add the base URL to the imageName field
+        foreach ($cardsArray as &$card) {
+            if (isset($card['imageName'])) {
+                $card['imageName'] = 'https://127.0.0.1:8000/images/cards/' . $card['imageName'];
+            }
+        }
+
 
         return $this->json($cardsArray);
     }

@@ -6,7 +6,20 @@
 {% block body %}
 	<h1>Mes cartes</h1>
 
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_dashboard') }}">Voir le dashboard</a>
+	{% endif %}
+
+	<a href="{{ path('app_card_add') }}">Ajouter une carte</a>
+
+	{% if cards|length == 0 %}
+		<p>Vous n'avez pas encore de carte.</p>
+	{% endif %}
+
 	{% for card in cards %}
 		<p>{{ card.name }}</p>
+		<img src="{{ vich_uploader_asset(card) }}" alt="{{ card.name }}">
+		<a href="{{ path('app_card_edit', {id: card.id}) }}">Éditer la carte</a>
+		<a href="{{ path('app_card_delete', {id: card.id}) }}">Supprimer la carte</a>
 	{% endfor %}
 {% endblock %}

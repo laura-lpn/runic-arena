@@ -16,14 +16,18 @@ class CardType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $card = $options['data'];
+
         $builder
             ->add('name')
             ->add('imageFile', VichImageType::class, [
-                'required' => true,
+                'required' => !$card->getImageName(),
                 'download_uri' => false,
+                'allow_delete' => false,
                 'image_uri' => true,
             ])
             ->add('power', ChoiceType::class, [
+                'required' => true,
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -39,11 +43,13 @@ class CardType extends AbstractType
             ])
             ->add('class', EntityType::class, [
                 'class' => ClassCard::class,
+                'required' => true,
                 'choice_label' => 'name',
                 'expanded' => true,
             ])
             ->add('type', EntityType::class, [
                 'class' => TypeCard::class,
+                'required' => true,
                 'choice_label' => 'name',
                 'expanded' => true,
             ])

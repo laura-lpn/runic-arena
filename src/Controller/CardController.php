@@ -7,6 +7,7 @@ use App\Form\CardType;
 use App\Repository\CardRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,13 +16,21 @@ class CardController extends AbstractController
 {
 
     #[Route('/cards', name: 'app_cards')]
-    public function index(CardRepository $cardRepository): Response
+    public function index(CardRepository $cardRepository, Security $security): Response
     {
         $user = $this->getUser();
-        $cards = $cardRepository->findBy(['user' => $user]);
+
+        $cards = [];
+
+        // user admin findall
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $cards = $cardRepository->findAll();
+        } else {
+            $cards = $cardRepository->findBy(['user' => $user]);
+        }
 
         return $this->render('card/index.html.twig', [
-            'cards' => $cards,
+            'cards' => $cards
         ]);
     }
 
@@ -48,26 +57,15 @@ class CardController extends AbstractController
         ]);
     }
 
-    #[Route('/cards/{id}', name: 'app_card_show')]
-    public function show($id, CardRepository $cardRepository): Response
-    {
-        $user = $this->getUser();
-        $card = $cardRepository->findOneBy(['id' => $id, 'user' => $user]);
-
-        if (!$card) {
-            throw $this->createNotFoundException('Carte non trouvée');
-        }
-
-        return $this->render('card/show.html.twig', [
-            'card' => $card,
-        ]);
-    }
-
     #[Route('/cards/{id}/edit', name: 'app_card_edit')]
-    public function edit($id, Request $request, EntityManagerInterface $em, CardRepository $cardRepository): Response
+    public function edit($id, Request $request, EntityManagerInterface $em, CardRepository $cardRepository, Security $security): Response
     {
         $user = $this->getUser();
-        $card = $cardRepository->findOneBy(['id' => $id, 'user' => $user]);
+        $card = $cardRepository->findOneBy(['id' => $id]);
+
+        if (!$security->isGranted('ROLE_ADMIN') && $card->getUser() !== $user) {
+            return $this->redirectToRoute('app_cards');
+        }
 
         if (!$card) {
             throw $this->createNotFoundException('Carte non trouvée');
@@ -79,7 +77,7 @@ class CardController extends AbstractController
         if ($form->issubmitted() && $form->isValid()) {
             $em->flush();
 
-            return $this->redirectToRoute('app_card_show', ['id' => $card->getId()]);
+            return $this->redirectToRoute('app_cards');
         }
 
         return $this->render('card/edit.html.twig', [
@@ -89,10 +87,14 @@ class CardController extends AbstractController
     }
 
     #[Route('/cards/{id}/delete', name: 'app_card_delete')]
-    public function delete($id, EntityManagerInterface $em, CardRepository $cardRepository): Response
+    public function delete($id, EntityManagerInterface $em, CardRepository $cardRepository, Security $security): Response
     {
         $user = $this->getUser();
-        $card = $cardRepository->findOneBy(['id' => $id, 'user' => $user]);
+        $card = $cardRepository->findOneBy(['id' => $id]);
+
+        if (!$security->isGranted('ROLE_ADMIN') && $card->getUser() !== $user) {
+            return $this->redirectToRoute('app_cards');
+        }
 
         if (!$card) {
             throw $this->createNotFoundException('Carte non trouvée');
