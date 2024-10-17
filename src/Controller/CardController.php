@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class CardController extends AbstractController
 {
 
-    #[Route('/cards', name: 'app_card')]
+    #[Route('/cards', name: 'app_cards')]
     public function index(CardRepository $cardRepository): Response
     {
         $user = $this->getUser();
@@ -40,7 +40,7 @@ class CardController extends AbstractController
             $em->persist($card);
             $em->flush();
 
-            return $this->redirectToRoute('app_card');
+            return $this->redirectToRoute('app_cards');
         }
 
         return $this->render('card/add.html.twig', [
@@ -86,5 +86,21 @@ class CardController extends AbstractController
             'form' => $form,
             'card' => $card
         ]);
+    }
+
+    #[Route('/cards/{id}/delete', name: 'app_card_delete')]
+    public function delete($id, EntityManagerInterface $em, CardRepository $cardRepository): Response
+    {
+        $user = $this->getUser();
+        $card = $cardRepository->findOneBy(['id' => $id, 'user' => $user]);
+
+        if (!$card) {
+            throw $this->createNotFoundException('Carte non trouvée');
+        }
+
+        $em->remove($card);
+        $em->flush();
+
+        return $this->redirectToRoute('app_cards');
     }
 }
