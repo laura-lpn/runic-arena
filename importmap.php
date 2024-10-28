@@ -28,4 +28,22 @@ return [
     'chart.js' => [
         'version' => '3.9.1',
     ],
+    '@tailwindcss/forms' => [
+        'version' => '0.5.9',
+    ],
+    'mini-svg-data-uri' => [
+        'version' => '1.4.4',
+    ],
+    'tailwindcss/plugin' => [
+        'version' => '3.4.10',
+    ],
+    'tailwindcss/defaultTheme' => [
+        'version' => '3.4.10',
+    ],
+    'tailwindcss/colors' => [
+        'version' => '3.4.10',
+    ],
+    'picocolors' => [
+        'version' => '1.0.1',
+    ],
 ];
