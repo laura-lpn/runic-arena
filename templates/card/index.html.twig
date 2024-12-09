@@ -16,10 +16,22 @@
 		<p>Vous n'avez pas encore de carte.</p>
 	{% endif %}
 
-	{% for card in cards %}
-		<p>{{ card.name }}</p>
-		<img src="{{ vich_uploader_asset(card) }}" alt="{{ card.name }}">
-		<a href="{{ path('app_card_edit', {id: card.id}) }}">Éditer la carte</a>
-		<a href="{{ path('app_card_delete', {id: card.id}) }}">Supprimer la carte</a>
-	{% endfor %}
+	<div class="flex gap-10 mt-4">
+		{% for card in cards %}
+			<div class="flex flex-col gap-4">
+				<div class="my-card">
+					<img src="{{ vich_uploader_asset(card) }}" alt="{{ card.name }}">
+					<h3 class="my-card-title">{{ card.name }}</h3>
+					<div class="my-card-power-div">
+						<p class="my-card-power-nb">{{ card.power }}</p>
+						<p class="my-card-power-text">atk</p>
+					</div>
+				</div>
+				<div class="flex gap-2 flex-col">
+					<a class="my-button" href="{{ path('app_card_edit', {id: card.id}) }}">Éditer la carte</a>
+					<a class="my-button" href="{{ path('app_card_delete', {id: card.id}) }}">Supprimer la carte</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

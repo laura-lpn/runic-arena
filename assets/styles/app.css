@@ -15,7 +15,7 @@
   }
 
   .my-card {
-    @apply flex flex-col items-center w-1/5 rounded-xl relative overflow-hidden shadow-green hover:shadow-green-2xl hover:rotate-3 hover:ring-1 hover:ring-green transition-all;
+    @apply flex flex-col items-center rounded-xl relative overflow-hidden shadow-green hover:shadow-green-2xl hover:rotate-3 hover:ring-1 hover:ring-green transition-all;
   }
 
   .my-card-title {
