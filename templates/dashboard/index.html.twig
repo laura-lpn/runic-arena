@@ -6,16 +6,15 @@
 {% block body %}
 	<h1 class="my-h1">Dashboard</h1>
 
-	<h2>Nombre de cartes :
+	<h2 class="my-h2">Nombre de cartes :
 		{{ NbCards }}</h2>
 
 	<div class="flex gap-6 justify-center h-8">
 		<div>
-			{{ render_chart(chartType) }}
-		</div>
-
-		<div>
 			{{ render_chart(chartClass) }}
+		</div>
+		<div>
+			{{ render_chart(chartType) }}
 		</div>
 	</div>
 

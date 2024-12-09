@@ -39,12 +39,15 @@ class DashboardController extends AbstractController
                 [
                     'label' => 'Nombre de cartes par classe',
                     'backgroundColor' => [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(32, 245, 42)'
+                        'rgb(226, 109, 90)',
+                        'rgb(106, 4, 29)',
+                        'rgb(252, 158, 79)',
+                        'rgb(52, 211, 153)',
+                        'rgb(0, 70, 67)',
                     ],
+                    'borderWidth' => 0,
+                    'borderRadius' => 5,
+                    'spacing' => 5,
                     'data' => $dataClass,
                 ],
             ],
@@ -61,22 +64,51 @@ class DashboardController extends AbstractController
             $dataType[] = $type->getCards()->count();
         }
 
+        $chartClass->setOptions([
+            'plugins' => [
+                'legend' => [
+                    'labels' => [
+                        'color' => '#d9e6eb',
+                        'boxWidth' => 20,
+                        'boxHeight' => 20,
+                        'usePointStyle' => true,
+                        'pointStyle' => 'circle',
+                    ],
+                ],
+            ],
+        ]);
+
         $chartType->setData([
             'labels' => $labelsType,
             'datasets' => [
                 [
                     'label' => 'Nombre de cartes par type',
                     'backgroundColor' => [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
+                        'rgb(0, 70, 67)',
+                        'rgb(52, 211, 153)',
                     ],
+                    'borderWidth' => 0,
+                    'borderRadius' => 5,
+                    'spacing' => 5,
                     'data' => $dataType,
                 ],
             ],
         ]);
 
-
-
+        $chartType->setOptions([
+            'plugins' => [
+                'legend' => [
+                    'labels' => [
+                        'color' => '#d9e6eb',
+                        'boxWidth' => 20,
+                        'boxHeight' => 20,
+                        'usePointStyle' => true,
+                        'pointStyle' => 'circle',
+                        'fontStyle' => 'Montserrat',
+                    ],
+                ],
+            ],
+        ]);
 
         return $this->render('dashboard/index.html.twig', [
             'NbCards' => $NbCards,
