@@ -4,7 +4,7 @@
 
 @layer components {
   .my-h1 {
-    @apply text-center text-3xl font-bold font-second text-green;
+    @apply text-center text-3xl font-bold font-second text-green mb-6;
   }
   .my-h2 {
     @apply text-2xl font-medium font-second text-green mb-6 text-center;
@@ -123,9 +123,15 @@
     @apply font-main font-normal mr-2;
   }
 
-  #card_class,
-  #card_power,
+
   #card_type {
     @apply flex items-center flex-row gap-4 justify-start w-fit;
+  }
+
+  #card_class {
+    @apply grid grid-cols-radio w-fit gap-1 md:flex items-center md:flex-row md:gap-4 md:justify-start;
+  }
+  #card_power {
+    @apply grid grid-cols-8 w-fit gap-1 md:flex items-center md:flex-row md:gap-4 md:justify-start;
   }
 }

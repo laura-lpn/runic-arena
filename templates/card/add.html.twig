@@ -6,34 +6,36 @@
 {% block body %}
 	<h1 class="my-h1">Ajouter une carte</h1>
 
-	{{ form_errors(form) }}
+	<div class="flex flex-col justify-center items-center gap-4 w-4/5 lg:w-3/5 mx-auto">
 
-	{{ form_start(form) }}
-	<div class="flex gap-2 flex-col">
-		{{ form_label(form.name) }}
-		<div class="flex gap-2">
-			{{ form_widget(form.name) }}
+		{{ form_errors(form) }}
 
-			<button type="button" class="btn" id="random">Générer un nom aléatoire</button>
+		{{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+		<div class="flex gap-2 flex-col">
+			{{ form_label(form.name, "Nom de la carte") }}
+			<div class="flex gap-4 flex-col">
+				{{ form_widget(form.name) }}
+
+				<button type="button" class="my-button" id="random">Générer un nom aléatoire</button>
+			</div>
 		</div>
-	</div>
 
-	{{ form_row(form.imageFile, {
+		{{ form_row(form.imageFile, {
     label: "Image de la carte"
   }) }}
-	{{ form_row(form.class, {
+		{{ form_row(form.class, {
     label: "Classe"
   }) }}
-	{{ form_row(form.type, {
+		{{ form_row(form.type, {
     label: "Type"
   }) }}
-	{{ form_row(form.power, {
+		{{ form_row(form.power, {
       label: "Puisance d'attaque"
   }) }}
 
-	<button type="submit" class="btn">Ajouter</button>
-	{{ form_end(form) }}
-
+		<button type="submit" class="my-button mt-6">Ajouter</button>
+		{{ form_end(form) }}
+	</div>
 
 	<script>
 		document.getElementById('random').addEventListener('click', function () {

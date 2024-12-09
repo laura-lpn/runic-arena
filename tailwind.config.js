@@ -24,6 +24,10 @@ module.exports = {
       boxShadow: {
         'green': '0px 0px 15px #34d399',
         'green-2xl': '0px 0px 30px #34d399',
+      },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        'radio': '1fr 2fr'
       }
     }
   },
