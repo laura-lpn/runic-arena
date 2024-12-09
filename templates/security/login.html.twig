@@ -4,28 +4,36 @@
 {% endblock %}
 
 {% block body %}
-	<form method="post">
-		{% if error %}
-			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-		{% endif %}
 
-		{% if app.user %}
-			<div class="mb-3">
-				Connecté en tant que
-				{{ app.user.userIdentifier }},
-				<a href="{{ path('app_logout') }}">Se déconnecter</a>
+	<h1 class="my-h1">Se connecter</h1>
+	<div class="flex flex-col justify-center items-center gap-4 w-4/5 lg:w-3/5 mx-auto">
+		<form method="post" class="my-form">
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+
+			{% if app.user %}
+				<div class="mb-3">
+					Connecté en tant que
+					{{ app.user.userIdentifier }},
+					<a href="{{ path('app_logout') }}">Se déconnecter</a>
+				</div>
+			{% endif %}
+			<div>
+				<label for="username">Email</label>
+				<input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
 			</div>
-		{% endif %}
-
-		<h1 class="my-h1">Se connecter</h1>
-		<label for="username">Email</label>
-		<input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-		<label for="password">Mot de passe</label>
-		<input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-		<button class="btn btn-lg btn-primary" type="submit">
-			Connexion
-		</button>
-	</form>
+			<div>
+				<label for="password">Mot de passe</label>
+				<input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+			</div>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<button class="my-button mt-6" type="submit">
+				Connexion
+			</button>
+		</form>
+		<p class="text-center">Vous n'avez pas de compte ?
+			<a class="text-green" href="{{ path('app_register') }}">Inscrivez-vous</a>
+		</p>
+	</div>
 {% endblock %}

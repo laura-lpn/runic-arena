@@ -5,18 +5,23 @@
 
 {% block body %}
 	<h1 class="my-h1">S'inscrire</h1>
+	<div class="flex flex-col justify-center items-center gap-4 w-4/5 lg:w-3/5 mx-auto">
 
-	{{ form_errors(registrationForm) }}
+		{{ form_errors(registrationForm) }}
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.username, {
+		{{ form_start(registrationForm, {'attr': {'class': 'my-form'}}) }}
+		{{ form_row(registrationForm.email) }}
+		{{ form_row(registrationForm.username, {
         label: "Nom d'utilisateur"
     }) }}
-	{{ form_row(registrationForm.plainPassword, {
+		{{ form_row(registrationForm.plainPassword, {
             label: "Mot de passe"
         }) }}
 
-	<button type="submit" class="btn">S'inscrire</button>
-	{{ form_end(registrationForm) }}
+		<button type="submit" class="my-button mt-6">S'inscrire</button>
+		{{ form_end(registrationForm) }}
+		<p class="text-center">Vous avez déjà un compte ?
+			<a class="text-green" href="{{ path('app_login') }}">Connectez-vous</a>
+		</p>
+	</div>
 {% endblock %}
