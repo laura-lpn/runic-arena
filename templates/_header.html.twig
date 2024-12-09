@@ -1,0 +1,22 @@
+<header class="flex py-4 px-28 items-center justify-between w-full mb-6">
+	<a href="{{ path('app_home') }}" class=" flex gap-6 items-center">
+		<img src="{{ asset('images/logo.svg') }}" alt="logo Runic Arena" class="h-11 hidden md:block">
+		<p class="text-3xl font-bold font-second text-green">Runic Arena</p>
+	</a>
+	<nav>
+		<ul class="flex gap-12 items-center text-green font-medium">
+			{% if app.user %}
+				<li>
+					<a href="{{ path('app_cards') }}" class="my-nav">Cartes</a>
+				</li>
+				<li>
+					<a href="{{ path('app_logout') }}" class="my-nav">Se déconnecter</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="{{ path('app_login') }}" class="my-nav"></a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
+</header>

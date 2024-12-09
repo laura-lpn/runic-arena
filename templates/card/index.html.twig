@@ -6,16 +6,17 @@
 {% block body %}
 	<h1 class="my-h1">Mes cartes</h1>
 
-	{% if is_granted('ROLE_ADMIN') %}
-		<a class="my-button mb-4" href="{{ path('app_dashboard') }}">Voir le dashboard</a>
-	{% endif %}
+	<div class="flex gap-4 items-center justify-center">
+		{% if is_granted('ROLE_ADMIN') %}
+			<a class="my-button" href="{{ path('app_dashboard') }}">Voir le dashboard</a>
+		{% endif %}
 
-	<a class="my-button" href="{{ path('app_card_add') }}">Ajouter une carte</a>
-
+		<a class="my-button" href="{{ path('app_card_add') }}">Ajouter une carte</a>
+	</div>
 	{% if cards|length == 0 %}
 		<p class="mt-6 text-center">Vous n'avez pas encore de carte.</p>
 	{% else %}
-		<div class="grid grid-cols-5 gap-10 mt-6">
+		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 mt-6">
 			{% for card in cards %}
 				<div class="flex flex-col gap-4">
 					<twig:Card card="{{card}}" type="{{card.type.name}}" class="{{card.class.name}}"/>

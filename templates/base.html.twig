@@ -7,6 +7,7 @@
 			{% block title %}{% endblock %}
 			- Runic Arena</title>
 		{% block stylesheets %}
+			<link rel="icon" href="{{ asset('images/favicon.ico') }}"/>
 			<link rel="stylesheet" href="{{ asset('styles/app.css') }}">
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +23,9 @@
 
 	</head>
 	<body class="h-screen">
+		{% include '_header.html.twig' %}
 		<main class="flex flex-col w-4/5 mx-auto"> {% block body %}{% endblock %}
 			</main>
+			{% include '_footer.html.twig' %}
 		</body>
 	</html>
