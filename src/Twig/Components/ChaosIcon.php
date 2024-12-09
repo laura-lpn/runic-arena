@@ -8,6 +8,4 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 class ChaosIcon
 {
   public string $color;
-  public string $width;
-  public string $height;
 }

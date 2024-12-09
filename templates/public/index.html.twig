@@ -13,16 +13,9 @@
 
 	{% if lastCards is not empty %}
 		<h2 class="my-h2">Les dernières cartes ajoutées</h2>
-		<div class="flex gap-10">
+		<div class="grid gap-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
 			{% for card in lastCards %}
-				<div class="my-card w-1/5">
-					<img src="{{ vich_uploader_asset(card) }}" alt="{{ card.name }}">
-					<h3 class="my-card-title">{{ card.name }}</h3>
-					<div class="my-card-power-div">
-						<p class="my-card-power-nb">{{ card.power }}</p>
-						<p class="my-card-power-text">atk</p>
-					</div>
-				</div>
+				<twig:Card card="{{card}}" type="{{card.type.name}}" class="{{card.class.name}}"/>
 			{% endfor %}
 		</div>
 	{% endif %}

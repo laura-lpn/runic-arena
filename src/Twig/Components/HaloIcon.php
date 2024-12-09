@@ -8,6 +8,4 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 class HaloIcon
 {
   public string $color;
-  public string $width;
-  public string $height;
 }

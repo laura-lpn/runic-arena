@@ -15,11 +15,23 @@
   }
 
   .my-card {
-    @apply flex flex-col items-center rounded-xl relative overflow-hidden shadow-green hover:shadow-green-2xl hover:rotate-3 hover:ring-1 hover:ring-green transition-all;
+    @apply w-full flex flex-col items-center rounded-xl relative overflow-hidden shadow-green hover:shadow-green-2xl hover:rotate-3 hover:ring-1 hover:ring-green transition-all;
   }
 
   .my-card-title {
-    @apply text-lg font-semibold font-second text-white absolute bottom-0 rounded-t-md bg-dark-blue/80 py-1 px-3;
+    @apply text-2xl md:text-xl lg:text-lg font-semibold font-second text-white absolute bottom-0 rounded-t-md bg-dark-blue/80 py-1 px-3;
+  }
+
+  .my-card-icon {
+    @apply w-8 h-8 md:w-6 md:h-6 lg:w-5 lg:h-5;
+  }
+
+  .my-card-type {
+    @apply bg-black p-2 lg:p-1 rounded-full absolute top-2 left-2 flex items-center justify-center;
+  }
+
+  .my-card-class {
+    @apply bg-green p-2 lg:p-1 rounded-3xl absolute top-16 md:top-14 lg:top-12 left-2 flex items-center justify-center;
   }
 
   .my-card-power-div {
@@ -27,11 +39,11 @@
   }
 
   .my-card-power-nb {
-    @apply text-2xl font-black;
+    @apply text-4xl md:text-3xl lg:text-2xl font-black;
   }
 
   .my-card-power-text {
-    @apply text-xs font-semibold;
+    @apply text-lg md:text-base lg:text-xs font-semibold;
   }
 
   .my-button {

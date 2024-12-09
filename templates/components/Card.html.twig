@@ -1,0 +1,14 @@
+<div class="my-card">
+	<img src="{{ vich_uploader_asset(card, 'imageFile') }}" alt="{{ card.name }}">
+	<div class="my-card-type">
+		{{ component(this.getIconType(), {color: "#34d399"}) }}
+	</div>
+	<div class="my-card-class">
+		{{ component(this.getIconClass(), {color: "#121212"}) }}
+	</div>
+	<h3 class="my-card-title">{{ card.name }}</h3>
+	<div class="my-card-power-div">
+		<p class="my-card-power-nb">{{ card.power }}</p>
+		<p class="my-card-power-text">atk</p>
+	</div>
+</div>
