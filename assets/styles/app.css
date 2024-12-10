@@ -50,6 +50,10 @@
     @apply text-lg md:text-base lg:text-xs font-semibold;
   }
 
+  .my-section-home {
+    @apply w-4/5 md:w-3/5 mx-auto flex mt-8 gap-8 md:gap-16 justify-center items-center;
+  }
+
   .my-power {
     @apply bg-dark-blue text-2xl rounded-b-md pb-2 pt-3 px-3 font-second text-green flex flex-col items-center;
   }
@@ -68,6 +72,14 @@
 
   .my-class > svg {
     @apply w-20 h-20;
+  }
+
+  .my-type-text {
+    @apply font-second text-lg text-green font-bold;
+  }
+
+  .my-class-text {
+    @apply font-second text-lg text-dark-blue font-bold;
   }
 
   .my-button {

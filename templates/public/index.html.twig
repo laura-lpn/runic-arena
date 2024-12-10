@@ -4,19 +4,104 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="my-h1">Runic Arena</h1>
+	<section class="flex flex-col justify-center gap-8 text-center w-4/5 md:w-3/5 mx-auto">
+		<img src="{{ asset('images/logo.svg') }}" alt="logo Runic Arena" class="h-28">
+		<h1 class="my-h1">Bienvenue sur Runic Arena, le jeu de cartes en ligne !</h1>
+		<p>
+			Runic Arena est un jeu de cartes en ligne où vous pouvez collectionner des cartes et les utiliser pour combattre d'autres joueurs.
+		</p>
+	</section>
 
-	<p class="my-p">Bienvenue sur Runic Arena, le jeu de cartes en ligne !</p>
+	<h2 class="my-h2 mt-20">Chaque carte possède :</h2>
+	<section class="w-3/5 mx-auto flex flex-col md:flex-row gap-8 mt-4 md:gap-16 justify-center items-center">
+		<div class="bg-green/70 h-80 w-56 my-card">
+			<h3 class="my-card-title">Nom de la carte</h3>
+		</div>
+		<ul class="list-disc text-lg">
+			<li>Un nom</li>
+			<li>Une illustration</li>
+		</ul>
+	</section>
+	<h3 class="my-h3">Une puissance d'attaque allant de 0 à 9</h3>
+	<section class="px-8 md:px-32 flex justify-center items-center gap-8 mt-8 flex-wrap lg:flex-nowrap bg-green py-12 w-11/12 md:w-3/5 mx-auto rounded-xl">
+		<div class="my-power">1<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">2<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">3<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">4<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">5<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">6<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">7<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">8<p class="my-card-power-text">atk</p>
+		</div>
+		<div class="my-power">9<p class="my-card-power-text">atk</p>
+		</div>
+	</section>
 
-	<p class="my-p">Vous pouvez en ajouter de nouvelles.</p>
-	<a href="{{ path('app_card_add') }}" class="my-button">Ajouter une carte</a>
+	<h3 class="my-h3">Un type parmi :</h3>
+	<section class="my-section-home flex-col md:flex-row">
+		<div class="my-type">
+			<twig:HaloIcon color="#34d399"/>
+			<h4 class="my-type-text">Halo</h4>
+		</div>
+		<div class="my-type">
+			<twig:ChaosIcon color="#34d399"/>
+			<h4 class="my-type-text">Chaos</h4>
+		</div>
+	</section>
+	<h3 class="my-h3">Une classe parmi :</h3>
+	<section class="my-section-home flex-wrap">
+		<div class="my-class">
+			<twig:MageIcon color="#111827"/>
+			<h4 class="my-class-text">Mage</h4>
+		</div>
+		<div class="my-class">
+			<twig:SoigneurIcon color="#111827"/>
+			<h4 class="my-class-text">Soigneur</h4>
+		</div>
+		<div class="my-class">
+			<twig:GuerrierIcon color="#111827"/>
+			<h4 class="my-class-text">Guerrier</h4>
+		</div>
+		<div class="my-class">
+			<twig:AssassinIcon color="#111827"/>
+			<h4 class="my-class-text">Assassin</h4>
+		</div>
+		<div class="my-class">
+			<twig:ArcherIcon color="#111827"/>
+			<h4 class="my-class-text">Archer</h4>
+		</div>
+	</section>
+
 
 	{% if lastCards is not empty %}
-		<h2 class="my-h2">Les dernières cartes ajoutées</h2>
-		<div class="grid gap-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
+		<h2 class="my-h2 mt-20">Un aperçu des dernières cartes ajoutées</h2>
+		<div class="grid gap-10 mt-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-5 w-11/12 mx-auto">
 			{% for card in lastCards %}
 				<twig:Card card="{{card}}" type="{{card.type.name}}" class="{{card.class.name}}"/>
 			{% endfor %}
 		</div>
 	{% endif %}
+
+	<h2 class="my-h2 mt-20 w-4/5 mx-auto">Si vous souhaitez participer à la création de cartes, vous pouvez :</h2>
+	<a href="{{ path('app_card_add') }}" class="my-button">Ajouter une carte</a>
+
+	<section class="w-3/5 flex flex-col mx-auto gap-8 py-8 px-12 shadow-green-2xl ring-1 ring-green rounded-2xl mt-20 text-center">
+		<h2 class="my-h2">Notre projet sur Kickstarter</h2>
+		<p>
+			Nous avons lancé une campagne de financement participatif sur Kickstarter pour financer le développement de Runic Arena.
+		</p>
+		<img src="{{ asset('images/logo-kickstarter.png') }}" alt="logo Kickstarter" class="w-2/5 mx-auto">
+		<p>
+			Si vous souhaitez soutenir notre projet, vous pouvez participer à notre campagne.
+		</p>
+		<a href="" class="my-button">Participer</a>
+	</section>
+
 {% endblock %}
