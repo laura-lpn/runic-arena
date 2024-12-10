@@ -20,12 +20,14 @@
 			{% for card in cards %}
 				<div class="flex flex-col gap-4">
 					<twig:Card card="{{card}}" type="{{card.type.name}}" class="{{card.class.name}}"/>
-					<div class="flex gap-2 flex-col">
-						<a class="my-button" href="{{ path('app_card_edit', {id: card.id}) }}">Éditer la carte</a>
-						<a class="my-button" href="{{ path('app_card_delete', {id: card.id}) }}">Supprimer la carte</a>
-					</div>
+					<div class="flex gap-6 justify-center">
+						<a class="my-icon-button" href="{{ path('app_card_edit', {id: card.id}) }}">
+							<twig:EditIcon color="#34d399"/></a>
+							<a class="my-icon-button" href="{{ path('app_card_delete', {id: card.id}) }}">
+								<twig:DeleteIcon color="#34d399"/></a>
+							</div>
+						</div>
+					{% endfor %}
 				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
-{% endblock %}
+			{% endif %}
+		{% endblock %}
