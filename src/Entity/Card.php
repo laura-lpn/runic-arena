@@ -28,7 +28,7 @@ class Card
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $UpdatedAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'cards')]
     #[ORM\JoinColumn(nullable: true)]
@@ -61,7 +61,7 @@ class Card
     #[ORM\PreUpdate]
     public function setUpdatedAtValue(): void
     {
-        $this->UpdatedAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -95,12 +95,12 @@ class Card
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->UpdatedAt;
+        return $this->updatedAt;
     }
 
     public function setUpdatedAt(?\DateTimeImmutable $UpdatedAt): static
     {
-        $this->UpdatedAt = $UpdatedAt;
+        $this->updatedAt = $UpdatedAt;
 
         return $this;
     }
