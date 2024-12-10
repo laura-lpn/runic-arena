@@ -11,7 +11,7 @@
   }
 
   .my-h3 {
-    @apply text-xl font-medium font-second text-green mb-2;
+    @apply text-center text-lg font-medium mt-12;
   }
 
   .my-nav {
@@ -48,6 +48,26 @@
 
   .my-card-power-text {
     @apply text-lg md:text-base lg:text-xs font-semibold;
+  }
+
+  .my-power {
+    @apply bg-dark-blue text-2xl rounded-b-md pb-2 pt-3 px-3 font-second text-green flex flex-col items-center;
+  }
+
+  .my-type {
+    @apply shadow-green-2xl ring-1 ring-green rounded-2xl px-8 py-4 flex flex-col items-center gap-4;
+  }
+
+  .my-class {
+    @apply bg-green rounded-3xl px-8 py-4 flex flex-col items-center gap-4;
+  }
+
+  .my-type > svg {
+    @apply w-20 h-20;
+  }
+
+  .my-class > svg {
+    @apply w-20 h-20;
   }
 
   .my-button {

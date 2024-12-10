@@ -1,7 +1,7 @@
-<header class="flex py-4 px-28 items-center justify-between w-full mb-6">
+<header class="flex py-4 px-8 pmd:px-20 lg:px-28 items-center justify-between w-full mb-6">
 	<a href="{{ path('app_home') }}" class=" flex gap-6 items-center">
-		<img src="{{ asset('images/logo.svg') }}" alt="logo Runic Arena" class="h-11 hidden md:block">
-		<p class="text-3xl font-bold font-second text-green">Runic Arena</p>
+		<img src="{{ asset('images/logo.svg') }}" alt="logo Runic Arena" class="h-11">
+		<p class="text-3xl font-bold font-second text-green hidden md:block">Runic Arena</p>
 	</a>
 	<nav>
 		<ul class="flex gap-12 items-center text-green font-medium">
@@ -14,7 +14,7 @@
 				</li>
 			{% else %}
 				<li>
-					<a href="{{ path('app_login') }}" class="my-nav"></a>
+					<a href="{{ path('app_login') }}" class="my-nav">Se connecter</a>
 				</li>
 			{% endif %}
 		</ul>
