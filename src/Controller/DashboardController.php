@@ -17,7 +17,7 @@ class DashboardController extends AbstractController
     public function index(ChartBuilderInterface $chartBuilder, ClassCardRepository $classRepository, CardRepository $cardRepository, TypeCardRepository $typeRepository): Response
     {
         $cards = $cardRepository->findAll();
-        $types = $typeRepository->findAll();
+        $typesCards = $typeRepository->findAll();
         $classCards = $classRepository->findAll();
 
         $NbCards = count($cards);
@@ -59,7 +59,7 @@ class DashboardController extends AbstractController
         $labelsType = [];
         $dataType = [];
 
-        foreach ($types as $type) {
+        foreach ($typesCards as $type) {
             $labelsType[] = $type->getName();
             $dataType[] = $type->getCards()->count();
         }

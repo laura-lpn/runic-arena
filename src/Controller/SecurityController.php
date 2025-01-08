@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
 
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_cards');
         }
 
         // last username entered by the user
@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
     {
 
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_cards');
         }
 
         $user = new User();
@@ -58,9 +58,7 @@ class SecurityController extends AbstractController
 
             $security->login($user, 'form_login', 'main');
 
-            // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_cards');
         }
 
         return $this->render('security/register.html.twig', [
