@@ -18,6 +18,7 @@
     @apply relative duration-500 block after:absolute after:content-[''] after:top-full after:h-0.5 after:w-full after:left-0 after:bg-green after:rounded-full after:origin-right after:scale-x-0 after:transition-transform after:duration-500 hover:after:origin-left hover:after:scale-x-100;
   }
 
+  /* CARDS */
   .my-card {
     @apply w-full flex flex-col items-center rounded-xl relative overflow-hidden shadow-green hover:shadow-green-2xl hover:rotate-3 hover:ring-1 hover:ring-green transition-all;
   }
@@ -31,7 +32,7 @@
   }
 
   .my-card-type {
-    @apply bg-black p-2 lg:p-1 rounded-full absolute top-2 left-2 flex items-center justify-center;
+    @apply bg-dark-blue p-2 lg:p-1 rounded-full absolute top-2 left-2 flex items-center justify-center;
   }
 
   .my-card-class {
@@ -50,6 +51,7 @@
     @apply text-lg md:text-base lg:text-xs font-semibold;
   }
 
+  /* HOME */
   .my-section-home {
     @apply w-4/5 md:w-3/5 mx-auto flex mt-8 gap-8 md:gap-16 justify-center items-center;
   }
@@ -89,6 +91,8 @@
   .my-icon-button {
     @apply bg-none border-green border-2 ring-green/20 ring-1 p-2 rounded-full hover:shadow-green transition-shadow;
   }
+
+  /* FORMS */
 
   .my-form {
     @apply flex flex-col justify-center items-center w-full gap-4;

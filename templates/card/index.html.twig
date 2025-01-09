@@ -1,10 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes cartes
+{% block title %}
+	{% if is_granted('ROLE_ADMIN') %}
+		Cartes
+	{% else %}
+		Mes cartes
+	{% endif %}
 {% endblock %}
 
 {% block body %}
-	<h1 class="my-h1">Mes cartes</h1>
+	<h1 class="my-h1">
+		{% if is_granted('ROLE_ADMIN') %}
+			Cartes
+		{% else %}
+			Mes cartes
+		{% endif %}
+	</h1>
 
 	<div class="flex gap-4 items-center justify-center">
 		{% if is_granted('ROLE_ADMIN') %}
@@ -23,11 +34,11 @@
 					<div class="flex gap-6 justify-center">
 						<a class="my-icon-button" href="{{ path('app_card_edit', {id: card.id}) }}">
 							<twig:EditIcon color="#34d399"/></a>
-							<a class="my-icon-button" href="{{ path('app_card_delete', {id: card.id}) }}">
-								<twig:DeleteIcon color="#34d399"/></a>
-							</div>
-						</div>
-					{% endfor %}
+						<a class="my-icon-button" href="{{ path('app_card_delete', {id: card.id}) }}">
+							<twig:DeleteIcon color="#34d399"/></a>
+					</div>
 				</div>
-			{% endif %}
-		{% endblock %}
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}

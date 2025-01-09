@@ -53,17 +53,6 @@ class DashboardController extends AbstractController
             ],
         ]);
 
-        // chart type
-        $chartType = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
-
-        $labelsType = [];
-        $dataType = [];
-
-        foreach ($typesCards as $type) {
-            $labelsType[] = $type->getName();
-            $dataType[] = $type->getCards()->count();
-        }
-
         $chartClass->setOptions([
             'plugins' => [
                 'legend' => [
@@ -74,9 +63,20 @@ class DashboardController extends AbstractController
                         'usePointStyle' => true,
                         'pointStyle' => 'circle',
                     ],
-                ],
+                ], 
             ],
         ]);
+
+        // chart type
+        $chartType = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+
+        $labelsType = [];
+        $dataType = [];
+
+        foreach ($typesCards as $type) {
+            $labelsType[] = $type->getName();
+            $dataType[] = $type->getCards()->count();
+        }
 
         $chartType->setData([
             'labels' => $labelsType,
