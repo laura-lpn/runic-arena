@@ -9,11 +9,13 @@
 	<h2 class="my-h2">Nombre de cartes :
 		{{ NbCards }}</h2>
 
-	<div class="flex flex-col md:flex-row gap-8 justify-center h-fit w-full md:w-4/5 mx-auto lg:gap-14">
+	<div class="flex flex-col md:flex-row gap-8 justify-center h-fit w-full md:w-4/5 mx-auto lg:gap-24 mt-6">
 		<div>
+			<h2 class="my-h2">Cartes par classe</h2>
 			{{ render_chart(chartClass) }}
 		</div>
 		<div>
+			<h2 class="my-h2">Cartes par type</h2>
 			{{ render_chart(chartType) }}
 		</div>
 	</div>

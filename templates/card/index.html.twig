@@ -38,11 +38,37 @@
 					<div class="flex gap-6 justify-center">
 						<a class="my-icon-button" href="{{ path('app_card_edit', {id: card.id}) }}">
 							<twig:EditIcon color="#34d399"/></a>
-						<a class="my-icon-button" href="{{ path('app_card_delete', {id: card.id}) }}">
+						<a class="my-icon-button" onclick="openPopup({{ card.id }})">
 							<twig:DeleteIcon color="#34d399"/></a>
 					</div>
 				</div>
 			{% endfor %}
 		</div>
 	{% endif %}
+	<div id="confirmation-popup" class="hidden fixed inset-0 bg-gray-900 bg-opacity-80 justify-center items-center">
+		<div class="bg-dark-blue border-green border-2 rounded-lg shadow-lg px-12 py-8">
+			<p class="text-lg mb-6">Êtes-vous sûr de vouloir supprimer cette carte ?</p>
+			<div class="flex justify-end gap-4 mt-4">
+				<a id="confirm-delete-button" class="my-button my-button-secondary" href="{{ path('app_card_delete', {id: 'cardDeleteId'}) }}">Confirmer</a>
+				<button id="cancel-button" class="my-button">Annuler</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function openPopup(cardId) {
+			const popup = document.getElementById('confirmation-popup');
+
+			const confirmDeleteButton = document.getElementById('confirm-delete-button');
+			const cancelButton = document.getElementById('cancel-button');
+
+			popup.classList.replace('hidden', 'flex');
+
+			confirmDeleteButton.href = confirmDeleteButton.href.replace('cardDeleteId', cardId);
+
+			cancelButton.addEventListener('click', () => {
+				popup.classList.replace('flex', 'hidden');
+			});
+		}
+	</script>
 {% endblock %}

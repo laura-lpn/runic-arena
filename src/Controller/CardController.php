@@ -26,9 +26,9 @@ class CardController extends AbstractController
 
         // user admin findall
         if ($security->isGranted('ROLE_ADMIN')) {
-            $cards = $cardRepository->findAll();
+            $cards = $cardRepository->findBy([], ['id' => 'DESC']);
         } else {
-            $cards = $cardRepository->findBy(['user' => $user]);
+            $cards = $cardRepository->findBy(['user' => $user], ['id' => 'DESC']);
         }
 
         return $this->render('card/index.html.twig', [
