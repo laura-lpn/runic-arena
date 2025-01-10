@@ -63,7 +63,7 @@ class DashboardController extends AbstractController
                         'usePointStyle' => true,
                         'pointStyle' => 'circle',
                     ],
-                ], 
+                ],
             ],
         ]);
 
