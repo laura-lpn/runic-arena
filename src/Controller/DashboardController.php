@@ -56,6 +56,8 @@ class DashboardController extends AbstractController
         $chartClass->setOptions([
             'plugins' => [
                 'legend' => [
+                    "position" => "right",
+                    "align" => "middle",
                     'labels' => [
                         'color' => '#d9e6eb',
                         'boxWidth' => 20,
@@ -98,6 +100,8 @@ class DashboardController extends AbstractController
         $chartType->setOptions([
             'plugins' => [
                 'legend' => [
+                    "position" => "right",
+                    "align" => "middle",
                     'labels' => [
                         'color' => '#d9e6eb',
                         'boxWidth' => 20,

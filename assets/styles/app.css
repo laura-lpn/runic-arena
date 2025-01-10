@@ -77,19 +77,31 @@
   }
 
   .my-type-text {
-    @apply font-second text-lg text-green font-bold;
+    @apply font-second text-lg text-green font-bold text-center;
+  }
+
+  .my-type-text-p {
+    @apply font-main text-sm text-green font-medium text-center;
   }
 
   .my-class-text {
-    @apply font-second text-lg text-dark-blue font-bold;
+    @apply font-second text-lg text-dark-blue font-bold text-center;
+  }
+
+  .my-class-text-p {
+    @apply font-main text-sm text-dark-blue font-medium text-center;
   }
 
   .my-button {
     @apply bg-none text-green border-green border-2 ring-green/20 ring-1 text-center font-second font-medium py-2 px-6 rounded-full mx-auto hover:shadow-green transition-shadow;
   }
 
+  .my-button-secondary {
+    @apply bg-green text-dark-blue
+  }
+
   .my-icon-button {
-    @apply bg-none border-green border-2 ring-green/20 ring-1 p-2 rounded-full hover:shadow-green transition-shadow;
+    @apply bg-none border-green border-2 ring-green/20 ring-1 p-2 rounded-full hover:shadow-green transition-shadow cursor-pointer;
   }
 
   /* FORMS */
