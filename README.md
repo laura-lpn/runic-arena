@@ -105,12 +105,12 @@ L'objectif principal est de mettre en place un générateur de cartes convivial,
 
 ### Page de création de carte
 
-<img src="public/images/screenshots/create.png" width="40%">
+<img src="public/images/screenshots/add.png" width="40%">
 
 ### Espace utilisateur
 
-<img src="public/images/screenshots/user.png" width="40%">
+<img src="public/images/screenshots/cards.png" width="40%">
 
 ### Espace administrateur
 
-<img src="public/images/screenshots/admin.png" width="40%">
+<img src="public/images/screenshots/dashboard.png" width="40%">
