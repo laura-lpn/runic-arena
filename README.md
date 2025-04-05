@@ -6,6 +6,8 @@ Le projet est une plateforme communautaire pour un jeu de cartes à collectionne
 
 L'objectif principal est de mettre en place un générateur de cartes convivial, comprenant une interface publique pour la présentation du projet, un espace utilisateur privé pour créer et gérer ses cartes, ainsi qu'un espace administrateur pour superviser l'ensemble des activités sur la plateforme.
 
+[lien du site](https://runic-arena.lauralpn.fr)
+
 ---
 
 ## Fonctionnalités
