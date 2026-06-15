@@ -116,3 +116,24 @@ L'objectif principal est de mettre en place un générateur de cartes convivial,
 ### Espace administrateur
 
 <img src="public/images/screenshots/dashboard.png" width="40%">
+
+---
+
+## Technologies
+
+- Symfony 7.1
+- Docker + Caddy
+- Doctrine ORM
+- TailwindCSS (via Asset Mapper)
+- MySQL
+- Chart.js
+
+---
+
+## Auteure
+
+ 👩‍💻 Laura Lepannetier
+
+Projet réalisé dans le cadre du Mastère Tech Lead.
+
+[GitHub](https://github.com/laura-lpn)
